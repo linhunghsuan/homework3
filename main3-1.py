@@ -20,22 +20,29 @@ svm_model_rbf = SVC(kernel='rbf', probability=True)
 svm_model_rbf.fit(X, Y)
 y2_pred_rbf = svm_model_rbf.predict(X)
 
-# 5. 視覺化 y, y1, y2 (SVM with RBF Kernel)
+# 5. 決策邊界可視化
+# 在 0 到 1000 範圍內生成細粒度數據
+x_range = np.linspace(0, 1000, 1000).reshape(-1, 1)
+y1_decision = logistic_model.predict(x_range)
+y2_decision = svm_model_rbf.predict(x_range)
+
 plt.figure(figsize=(12, 6))
 
-# 真實標籤與 Logistic Regression 預測
+# Logistic Regression 決策邊界
 plt.subplot(1, 2, 1)
 plt.scatter(X, Y, color='blue', label='True Y', alpha=0.6)
 plt.scatter(X, y1_pred, color='red', label='Logistic Regression Y1', alpha=0.6)
+plt.plot(x_range, y1_decision, color='black', linestyle='--', label='Decision Boundary')
 plt.title('Logistic Regression Results')
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.legend()
 
-# 真實標籤與 SVM (RBF) 預測
+# SVM (RBF Kernel) 決策邊界
 plt.subplot(1, 2, 2)
 plt.scatter(X, Y, color='blue', label='True Y', alpha=0.6)
 plt.scatter(X, y2_pred_rbf, color='green', label='SVM (RBF Kernel) Y2', alpha=0.6)
+plt.plot(x_range, y2_decision, color='black', linestyle='--', label='Decision Boundary')
 plt.title('SVM with RBF Kernel Results')
 plt.xlabel('X')
 plt.ylabel('Y')
