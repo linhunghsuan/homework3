@@ -1,0 +1,10 @@
+請參考
+1. write python to solve classification problem
+1.產生300個0到1000之間的隨機數列x
+2.分成兩類,當500<=x<=800時y=1,其餘y=0
+3.分別使用 Logistic regression predict y1,SVM predict y2
+4.分別繪製y1與y2的結果
+
+若為SVM classification with RBF Kernel
+
+增加decision boundary
